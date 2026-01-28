@@ -1,13 +1,36 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-  //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-  // to see how IntelliJ IDEA suggests fixing it.
-  IO.println(String.format("Hello and welcome!"));
+import java.io.FileReader;
+import java.io.IOException;
 
-  for (int i = 1; i <= 5; i++) {
-    //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-    // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-    IO.println("i = " + i);
-  }
+public class Ejercicio19LeerArchivo {
+    public static void main(String[] args) {
+        int contadorLineas = 1;
+        int contadorPalabras = 1;
+        int contadorCaracteres = 1;
+
+        System.out.println("Texto que hay en el archivo");
+        try (FileReader reader = new FileReader("../ArchivoParaEjercicios.txt")) {
+            int c;
+            while ((c = reader.read()) != -1) {
+                if (c == '\n') { // \n son saltos de líneas
+                    contadorLineas++;
+                }
+                if (c == 32 || c == '\n') { // 32 es el espacio y \n el salto de línea
+                    contadorPalabras++;
+                }
+                if (c != -1 && c != '\n') {
+                    contadorCaracteres++;
+                }
+                System.out.print((char) c);
+
+            }
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+
+        System.out.println();
+        System.out.println("================================================================");
+        System.out.println("En el archivo hay un total de " + contadorLineas + " líneas.");
+        System.out.println("En el archivo hay un total de " + contadorPalabras + " palabras.");
+        System.out.println("En el archivo hay un total de " + contadorCaracteres + " caracteres.");
+    }
 }
