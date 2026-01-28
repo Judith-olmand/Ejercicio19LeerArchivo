@@ -21,8 +21,26 @@ public class Ejercicio19LeerArchivo {
                     contadorCaracteres++;
                 }
                 System.out.print((char) c);
-
             }
+            /* CORRECCIÓN DE CLASE
+            int contador = 0;
+            int caracteres = 0;
+            int palabras = 0;
+
+            try (BufferedReader reader = new BufferedReader(new FileReader("../ArchivoParaEjercicios.txt"))) {
+                String linea;
+                while ((linea = reader.readLine()) != null) {
+                    contador++;
+                    System.out.println(linea);
+                    caracteres += linea.length();
+                    palabras += linea.split(" ").length; //split "trocea" la línea cada vez que ve un espácio en blanco
+                }
+            } catch (IOException e) {
+                System.out.println("Ocurrió un error al leer el archivo: " +
+                        e.getMessage());
+            }
+                }
+            */
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
